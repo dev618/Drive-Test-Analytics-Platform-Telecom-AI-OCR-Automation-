@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: white;
+        }
+
+        .container {
+            display: flex;
+            width: 100%;
+        }
+
+        /* Style for the left half (image) */
+        .left-half {
+            flex: 1;
+            background-image: url('static/loginwave.png'); /* Add your left image URL here */
+            background-size: cover;
+            background-position: center;
+            height: 110vh;
+        }
+
+        /* Style for the right half (registration form) */
+        .right-half {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .signup-box {
+            /* max-width: 300px; */
+            margin-top: 20%;
+            width: 400px;
+            margin: auto;
+            height: 64%;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);;
+        }
+
+        form {
+            display: flex;
+            margin-top: -45px;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label {
+            margin-top: 10px;
+            color: #666;
+        }
+
+        /* Styling for input fields with icons */
+.input-container {
+    position: relative;
+    width: 80%;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    margin-top: 20px; /* Adjusted margin-top */
+}
+
+/* Adjusted icon position */
+.icon {
+    position: absolute;
+    left: 10px;
+    color: #555;
+}
+
+/* Adjusted input padding */
+input,
+select {
+    flex: 1;
+    padding: 8px 30px 8px 40px;
+    margin: 5px 0;
+    box-sizing: border-box;
+}
+
+
+        button {
+            padding: 10px;
+            width: 40%;
+            background-color: #1976d2;
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+
+        }
+        h2{
+        top:10%;
+        }
+
+        /* Style for the image on the right */
+        .right-image {
+            width: 10%; /* Adjust the width as needed */
+            margin-top: 70px; /* Adjust the margin as needed */
+        }
+        .logo {
+            position: absolute;
+            top: 10px;
+            left: 40%;
+            width: 100px; /* Adjust width as needed */
+            height: auto; /* Maintain aspect ratio */
+        }
+
+    </style>
+
+</head>
+<body>
+    <div class="container">
+
+        <div class="left-half"></div>
+
+
+        <div class="right-half">
+
+            <img src="static/avatar.svg" alt="Top Image" class="right-image">
+
+            <div class="heading-container">
+                <img src="static/logo_light.png" alt="Logo" class="logo">
+<h2>Signup</h2>
+
+
+            <div class="signup-box">
+                <br>
+                <form action="/register" method="POST" onsubmit="return validatePassword()">
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <p style="color: {% if category == 'error' %}red{% else %}green{% endif %};">{{ message }}</p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+
+                    <div class="input-container">
+                        <i class="icon fas fa-user"></i>
+                        <input type="text" id="employee_name" name="employee_name" placeholder="Enter your Name" required>
+                    </div>
+
+
+                    <div class="input-container">
+    <i class="icon fas fa-location-dot"></i>
+    <select id="circle_name" name="circle_name" required>
+        <option value="" disabled selected>Select your Circle</option>
+        <option value="MP">MP (Madhya Pradesh)</option>
+        <option value="UPW">UPW (UP West)</option>
+        <option value="UPE">UPE (UP East)</option>
+        <option value="RJ">RJ (Rajasthan)</option>
+        <option value="GUJ">GUJ (Gujarat)</option>
+        <option value="MH">MH (Maharashtra)</option>
+        <option value="Bihar">Bihar</option>
+        <option value="ROB">ROB (Rest of Bengal)</option>
+        <option value="PNB">PNB (Punjab)</option>
+        <option value="KTK">KTK (Karnataka)</option>
+        <option value="MUM">MUM (Mumbai)</option>
+        <option value="Chennai">Chennai</option>
+        <option value="JH">JH (Jharkhand)</option>
+        <option value="KOC">Kolkata(KOC)</option>
+        <option value="HP">Himachal Pradesh (HP)</option>
+        <option value="HR">HR (Haryana)</option>
+        <option value="AP">AP (Andhra Pradesh)</option>
+        <option value="ROTN">ROTN (Rest of Tamil Nadu)</option>
+        <option value="KE">KE (Kerala)</option>
+    </select>
+</div>
+
+
+                    <div class="input-container">
+                        <i class="icon fas fa-envelope"></i>
+                        <input type="text" id="email" name="email" placeholder="Enter your Email" required>
+                    </div>
+
+
+                    <div class="input-container">
+                        <i class="icon fas fa-lock"></i>
+                        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                    </div>
+
+
+                    <div class="input-container">
+                        <i class="icon fas fa-lock"></i>
+                        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required );>
+                    </div>
+
+                    <button type="submit">Signup</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

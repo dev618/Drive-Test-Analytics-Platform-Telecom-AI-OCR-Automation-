@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Page</title>
+    <style>
+        html,body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, rgb(12, 12, 39), #3498db);
+            height: 100%;
+        }
+
+        body {
+            padding: 20px;
+        }
+
+        h1 {
+            color: white;
+            padding: 10px;
+            margin-top: 15%;
+        }
+
+        p {
+            margin-top: 3%;
+            color: white;
+        }
+
+        #buttonContainer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .roleButton {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 150px;
+            border: 2px solid #333;
+            border-radius: 5px;
+        }
+
+        #getStartedButton {
+            background-color: white;
+            color: rgb(65, 152, 190);
+            border: none;
+            margin-top: 10%;
+            border-radius: 20px;
+            padding: 15px 30px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+    </style>
+</head>
+<body>
+    <h1 id="welcomeMessage">Welcome to Insta-ICT Solution</h1>
+    <p id="instructions">Thank you for visiting. Feel free to explore and enjoy your time here.</p>
+
+    <div id="buttonContainer">
+        <button id="getStartedButton" onclick="window.location.href = '/login'">Get Started</button>
+    </div>
+</body>
+</html>

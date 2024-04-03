@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project Management</title>
+    <style>
+      .container {
+        max-width: 400px;
+        margin: 50px auto; /* Center the form */
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      label {
+        display: inline-block;
+        width: 120px; /* Fixed width for labels */
+        margin-bottom: 5px;
+      }
+
+      input[type="text"],
+      select {
+        width: calc(67% - 60px); /* Adjust for label and margin width */
+        padding: 8px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        box-sizing: border-box;
+      }
+
+      button[type="submit"] {
+        width: 100%;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 0;
+        border-radius: 3px;
+        cursor: pointer;
+        display: block;
+      }
+
+      button[type="submit"]:hover {
+        background-color: #0056b3;
+      }
+
+      .form-row {
+        display: flex;
+      }
+
+      .form-row label,
+      .form-row select {
+        flex: 1;
+        margin-right: 10px; /* Adjust spacing between elements */
+      }
+
+      .table-container {
+        margin-top: 50px; /* Space between form and table */
+        margin-left: 50px; /* Adjust the left margin for the table */
+      }
+
+      table {
+        width: 90%;
+        border-collapse: collapse;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      th,
+      td {
+        padding: 15px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+
+      th {
+        background-color: #4285f4;
+        color: #fff;
+      }
+
+      tbody tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+
+      tbody tr:hover {
+        background-color: #ddd;
+      }
+
+      button {
+        padding: 10px;
+        background-color: #1976d2;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        border-radius: 25px;
+        margin-right: 10px;
+      }
+
+      .logo {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        width: 90px; /* Adjust width as needed */
+        height: auto; /* Maintain aspect ratio */
+      }
+
+      .heading-container {
+      background-image: url("static/bluewhite.jpg");
+        background-color: #0d47a1;
+        background-size: cover;
+        background-repeat: no-repeat;
+        padding: 20px;
+        text-align: center;
+      }
+
+      #submit {
+        padding: 10px;
+        background-color: #1976d2;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        width: 20%;
+        border-radius: 25px;
+        margin-right: 10px;
+      }
+      #submit1 {
+        padding: 10px;
+        background-color: #1976d2;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        width: 10%;
+        border-radius: 25px;
+        margin-right: 10px;
+      }
+
+      button:hover {
+        background-color: #1565c0;
+      }
+
+      .submit-cancel-buttons button {
+        margin-right: 5px;
+      }
+
+      #employee {
+        width: 20%;
+      }
+
+      h1 {
+        color: white;
+      }
+
+      /* Remove width and height for site code, latitude, and longitude */
+      input[type="text"].site-code,
+      input[type="text"].latitude,
+      input[type="text"].longitude,
+      input[type="date"] {
+        width: 100px;
+        height: 30px; /* Adjust height as needed */
+        margin-bottom: 15px;
+      }
+
+      /* Label styles */
+      label.site-code-label,
+      label.latitude-label,
+      label.longitude-label {
+        width: auto;
+        margin-bottom: 5px;
+      }
+
+      /* Adjust margin for better alignment */
+      .site-code-container,
+      .latitude-container,
+      .longitude-container {
+        margin-bottom: 15px;
+      }
+      .submit {
+        margin-left: 45%;
+        margin-top: 40%;
+      }
+    </style>
+    <script>
+        function populateEmployeeDropdown() {
+        var circle = document.getElementById("project").value;
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "/getEmployees?circle=" + circle, true);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                var employees = JSON.parse(xhr.responseText);
+                var dropdown = document.getElementById("employee");
+                dropdown.innerHTML = ""; // Clear existing options
+                employees.forEach(function(employee) {
+                    var option = document.createElement("option");
+                    option.text = employee;
+                    option.value = employee;
+                    dropdown.add(option);
+                });
+            }
+        };
+        xhr.send();
+    }
+
+    </script>
+  </head>
+  <body>
+    <div class="heading-container">
+      <img src="static/logo_light.png" alt="Logo" class="logo" />
+      <h1>Task Allocation</h1>
+    </div>
+
+    <div class="container">
+      <form id="allocation-form">
+        <div class="form-row">
+          <label for="project-name">Project Name:</label>
+          <input
+            type="text"
+            id="project-name"
+            name="project-name"
+            value="{{ request.args.get('project', 'Your Project Name') }}"
+            disabled
+          />
+        </div>
+
+        <div class="form-row">
+          <label for="employee">Employee:</label>
+            <select id="employee" name="employee">
+              {% for name in employee_names %}
+                <option value="{{ name }}">{{ name }}</option>
+              {% endfor %}
+            </select>
+        </div>
+
+
+
+        <button type="submit" id="submit">Submit</button>
+      </form>
+    </div>
+
+    <div class="table-container">
+      <table id="allocation-table">
+        <thead>
+          <tr>
+            <th>Sr. No.</th>
+            <th>Project</th>
+            <th>Employee Name</th>
+            <th>Site Code</th>
+            <th>Latitude</th>
+            <th>Longitude</th>
+            <th>Allocated Date</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <button type="submit" id="submit1" onclick="saveTableData(event)" class="submit">
+        Save Table Data
+    </button>
+
+    <script>
+      document.getElementById("allocation-form").addEventListener("submit", function (event) {
+    event.preventDefault();
+    const projectName = document.getElementById("project-name").value;
+    const employeeName = document.getElementById("employee").value;
+    const tableBody = document.querySelector("#allocation-table tbody");
+
+    const newRow = document.createElement("tr");
+    newRow.innerHTML = `
+        <td>${tableBody.children.length + 1}</td>
+        <td>${projectName}</td>
+        <td>${employeeName}</td>
+        <td><input type="text" class="site-code" name="site-code"></td>
+        <td><input type="text" class="latitude" name="latitude"></td>
+        <td><input type="text" class="longitude" name="longitude"></td>
+        <td><input type="date" name="allocated-date" id="allocated-date"></td>
+        <td class="submit-cancel-buttons">
+            <button onclick="allocateTask(event, '${employeeName}')">Allocate Task</button>
+            <button class="cancel" onclick="cancelAllocation(this)">Cancel</button>
+        </td>
+    `;
+    tableBody.appendChild(newRow);
+    document.getElementById("employee").querySelector(`option[value="${employeeName}"]`).disabled = true;
+});
+
+function allocateTask(event, employeeName) {
+    event.preventDefault();
+    var regex = /[a-zA-Z!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+    var regexp = /[a-z!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+
+    const row = event.target.closest("tr");
+    const siteCode = row.querySelector(".site-code").value;
+    const latitude = row.querySelector(".latitude").value;
+    const longitude = row.querySelector(".longitude").value;
+    const allocatedDate = row.querySelector('[name="allocated-date"]').value;
+    if (siteCode === "") {
+        alert("Site Code can't be null");
+    } else if (regexp.test(siteCode)) {
+        alert("Invalid site code format");
+    } else if (latitude === "") {
+        alert("Latitude can't be null");
+    } else if (regex.test(latitude)) {
+        alert("Invalid latitude format");
+    } else if (longitude === "") {
+        alert("Longitude can't be null");
+    } else if (regex.test(longitude)) {
+        alert("Invalid Longitude format");
+    } else if (allocatedDate === "") {
+        alert("Allocated date can't be null");
+    } else {
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "/saveTableData");
+        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                console.log(xhr.responseText);
+                alert(`Task allocated to ${employeeName}`);
+            } else {
+                console.error(xhr.responseText);
+                alert("Failed to allocate task");
+            }
+        };
+        xhr.send(JSON.stringify({
+            employeeName: employeeName,
+            siteId: row.dataset.siteId, // Include the document ID as site ID
+            siteCode: siteCode,
+            latitude: latitude,
+            longitude: longitude,
+            allocatedDate: allocatedDate,
+        }));
+    }
+}
+
+
+      function cancelAllocation(button) {
+        // Remove the parent row of the button clicked
+        const row = button.closest("tr");
+        row.parentNode.removeChild(row);
+
+        const employeeName = row.querySelector("td:nth-child(3)").textContent;
+        document
+          .getElementById("employee")
+          .querySelector(`option[value="${employeeName}"]`).disabled = false;
+
+        alert("Allocation cancelled");
+      }
+
+
+
+      function populateEmployeeDropdown() {
+            var circle = document.getElementById("project-name").value;
+            console.log(circle);
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/getEmployees", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var employees = JSON.parse(xhr.responseText);
+                    var dropdown = document.getElementById("employee");
+                    dropdown.innerHTML = ""; // Clear existing options
+                    employees.forEach(function(employee) {
+                        var option = document.createElement("option");
+                        option.text = employee;
+                        option.value = employee;
+                        dropdown.add(option);
+                    });
+                }
+            };
+            xhr.send("project=" + circle);
+        }
+
+        // Call populateEmployeeDropdown() when the page loads
+        window.onload = populateEmployeeDropdown;
+
+
+
+    </script>
+    <button
+      type="submit"
+      id="submit2"
+      onclick="displayTable(event)"
+      class="submit"
+    >
+      Submit
+    </button>
+
+    <script>
+      function displayTable(event) {
+        event.preventDefault();
+        // Your code to display the table goes here
+        // This could include adding rows to the table, etc.
+
+        // Redirect to another HTML file after displaying the table
+        window.location.href = "predata.html";
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f3e5f5;
+            color: black; /* White text */
+            margin: 0;
+            padding: 0px;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 150px auto;
+            background: #e0e0e0;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .logo {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 90px; /* Adjust width as needed */
+            height: auto; /* Maintain aspect ratio */
+        }
+        .heading-container {
+            background-color: #0d47a1;
+            background-size: cover;
+            background-repeat: no-repeat;
+            padding: 20px;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333; /* Dark text */
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button[type="submit"] {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #1976d2;
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #1565c0;
+        }
+        h1{
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="heading-container">
+     <img src=" static/logo_light.png" alt="Logo" class="logo">
+        <h1>Data Download Page </h1>
+    </div>
+
+<form id="downloadForm" onsubmit="return showPopup()">
+    <label for="siteId">Site ID:</label>
+    <input type="text" id="siteId" name="siteId" placeholder="Enter Site ID" required>
+    <br>
+    <label for="selectFile">Select File:</label>
+    <select id="selectFile" name="selectFile">
+        <option value="pre_data">Download Pre Data</option>
+        <option value="post_data">Download Post Data</option>
+        <option value="pre_rar">Download Pre RAR</option>
+        <option value="post_rar">Download Post RAR</option>
+    </select>
+    <br>
+    <button type="submit">Submit</button>
+</form>
+
+<script>
+    function showPopup() {
+        var siteId = document.getElementById('siteId').value;
+        var selectedFile = document.getElementById('selectFile').value;
+
+        alert('Downloading ' + selectedFile + ' data for Site ID: ' + siteId);
+
+        // Prevent form submission
+        return false;
+    }
+</script>
+
+</body>
+</html>

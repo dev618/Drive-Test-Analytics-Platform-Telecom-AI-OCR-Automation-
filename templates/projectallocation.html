@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Selection</title>
+    <style>
+        html, body {
+            height: 100%; /* Ensure HTML and body elements take up the full height of the viewport */
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3e5f5;
+            color: black; /* White text */
+            margin: 0;
+            padding: 0px;
+
+        }
+        .logo {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 100px; /* Adjust width as needed */
+            height: auto; /* Maintain aspect ratio */
+        }
+
+
+        form {
+            max-width: 400px;
+            margin: 180px auto;
+            color: black;
+            margin-top: 25px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #e0e0e0;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        select, input, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #1976d2;
+            color: white;
+            cursor: pointer;
+            border: none;
+            width: 30%;
+            border-radius:25px;
+        }
+        .heading-container {
+            background-image: url("static/bluewhite.jpg");
+            background-size: cover; /* Cover the entire background */
+            background-repeat: no-repeat; /* Prevent background image from repeating */
+            padding: 20px;
+            text-align: center;
+
+        }
+        h1{
+            color: white;
+        }
+
+        button:hover {
+            background-color:  #1565c0;
+        }
+    </style>
+</head>
+<body>
+    <div class="heading-container">
+        <img src="static/logo_light.png" alt="Logo" class="logo">
+        <h1>Project Selection</h1>
+    </div>
+
+    <form id="projectForm" action="/submit" method="POST">
+
+
+        <label for="selectProject"> Select Project</label>
+        <select id="selectProject" name="selectProject">
+            <option value="Ericsson">Ericsson </option>
+            <option value="Nokia"> Nokia</option>
+            <option value="VIL">VIL</option>
+        </select>
+
+        <label for="selectOperator"> Select operator</label>
+        <select id="selectOperator" name="selectOperator">
+            <option value="Bharti">Bharti </option>
+            <option value="Airtel"> Airtel</option>
+            <option value="Jio"> JIO</option>
+            <option value="VIL"> VIL</option>
+        </select>
+
+        <br>
+
+        <label for="project"> Select Circle</label>
+        <select id="project" name="project" onchange="populateEmployeeDropdown()">
+            <option value="MP" id="MP">MP (Madhya Pradesh)</option>
+            <option value="UPW">UPW (UP West)</option>
+            <option value="UPE">UPE (UP East)</option>
+            <option value="RJ">RJ (Rajasthan)</option>
+            <option value="GUJ">GUJ (Gujarat)</option>
+            <option value="MH">MH (Maharashtra)</option>
+            <option value="Bihar">Bihar</option>
+            <option value="ROB">ROB (Rest of Bengal)</option>
+            <option value="PNB">PNB (Punjab)</option>
+            <option value="KTK">KTK (Karnataka)</option>
+            <option value="MUM">MUM (Mumbai)</option>
+            <option value="Chennai">Chennai</option>
+            <option value="JH">JH (Jharkhand)</option>
+            <option value="KOC">Kolkata(KOC)</option>
+            <option value="HP">Himachal Pradesh (HP)</option>
+            <option value="HR">HR (Haryana)</option>
+            <option value="AP">AP (Andhra Pradesh)</option>
+            <option value="ROTN">ROTN (Rest of Tamil Nadu)</option>
+            <option value="KE">KE (Kerala)</option>
+        </select>
+
+        <label for="selectActivity"> Activity </label>
+        <select id="selectActivity" name="selectActivity">
+            <option value="4G Cluster"> 4G Cluster </option>
+            <option value="4G SCFT"> 4G SCFT </option>
+            <option value="5G Cluster"> 5G Cluster </option>
+            <option value="5G SCFT/SSV"> 5G SCFT/SSV </option>
+        </select>
+        <div id="optionField" style="display: none;">
+            <label for="chosenOption">Choose an option:</label>
+            <select id="chosenOption" name="chosenOption">
+                <option value="700">700</option>
+                <option value="3500">3500</option>
+            </select>
+        </div>
+
+        <!-- Hidden input field to store the chosen option -->
+        <input type="hidden" id="hiddenChosenOption" name="hiddenChosenOption" value="">
+
+        <br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        function toggleOptionField() {
+            const projectValue = document.getElementById("selectProject").value;
+            const operatorValue = document.getElementById("selectOperator").value;
+            const activityValue = document.getElementById("selectActivity").value;
+            const optionField = document.getElementById("optionField");
+
+            if ((projectValue === "Ericsson" || projectValue === "Nokia") && operatorValue === "Jio" && activityValue === "5G SCFT/SSV") {
+                optionField.style.display = "block";
+            } else {
+                optionField.style.display = "none";
+            }
+        }
+
+        function submitForm() {
+
+            if (document.getElementById("optionField").style.display === "block") {
+                const chosenOption = document.getElementById("chosenOption").value;
+                document.getElementById("hiddenChosenOption").value = chosenOption;
+            } else {
+                // If option field is not visible, make sure to clear the hidden input field value
+                document.getElementById("hiddenChosenOption").value = "";
+            }
+
+             // Submit the form
+                document.getElementById("projectForm").submit();
+        }
+
+        //function submitForm() {
+            // If option field is visible, set the chosen option to the hidden input field
+            //if (document.getElementById("optionField").style.display === "block") {
+                //const chosenOption = document.getElementById("chosenOption").value;
+                //document.getElementById("hiddenChosenOption").value = chosenOption;
+            //}
+
+            // Submit the form
+            //document.getElementById("projectForm").submit();
+            // window.location.href = "Taskallocation.html";
+        //}
+
+        // Call toggleOptionField initially and whenever any of the select elements change
+        document.addEventListener("DOMContentLoaded", toggleOptionField);
+        document.getElementById("selectProject").addEventListener("change", toggleOptionField);
+        document.getElementById("selectOperator").addEventListener("change", toggleOptionField);
+        document.getElementById("selectActivity").addEventListener("change", toggleOptionField);
+
+    </script>

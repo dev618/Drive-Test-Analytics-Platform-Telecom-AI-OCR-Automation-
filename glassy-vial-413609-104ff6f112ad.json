@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "glassy-vial-413609",
+  "private_key_id": "104ff6f112ade3e6ac9e5e9ab881736000332448",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDJXFC8RQIb8/rf\n7lltphAyd7xp+MWkC8MLHT+NblFmlIryooJXA4q5rVFWbNavTVMKoi7OoIuF1EtQ\n6ZdP7pHve2hyZ3RbyZdoRoAdfAAUziJJ68WH0nbB8ZBgpFn7oQIQX7bxea3lyIGh\nSLkNl5zuLsLfUgs/hvZWRcpd/BP+EYxb3Iktiq18AxjGokX2/RWkhaT8t0aWg9aR\nQdte5RKwmDjRuezRV+pl2dOm2tqda7Dle60KF0PIYi+u9TWaMn7xxTjhLbza7hK2\nag/h4taBnMDpNFWICsskzTO+yQZxW1saJ2KydQTaTuOPXGM3KYL92/VrZNx5uHo8\ntsKsfCZtAgMBAAECggEAE4aLIaaDbNh8xEgljddjjLFFqPUBnUWytRox9nHzHMJc\nsuiFQRDL2/NthrbpHnieC9LsPQceYGzUnNT54jtdFV7fIvDbPKdQskDb3YAPtfTD\nKG3faqtC7s2Q1X46Z4cWXyYY5FOLRFPsFgqqPyIrioEoTmVzR8a7jmQYGoL+IU3A\nOgDNb7nd+3La23AW0y9oHo6Qtr7PYngRZtsBxzOSwhkCUZHf3B1I0iHzP982nfK/\nqL5MNdvGT+t0tAgZW389ie0o/E/4Ims7pZG/MGLfPwQdG98FRu9ziaQPJ7O53ZeK\nlskaBx7N+Ex7ew71nOhvboxv758FkGEO3eDjtLPCtQKBgQDvKI080ZkT3cwMagg+\n51Gb0WeZ355AQSR/IimIs+hzowv9+cKebDDqtWE5HlQWNP58YXdMNPYq8R5K/qRk\nxA1wLPfoTI+dM8pukAKLKo6gA4DPCBu3qmPP2zYGofMR0vHfbuVi1mubaN18tC7b\n5W9vFfV8tAAYft9CAExr/4YGiwKBgQDXilxVFE7TxjkM1VUsRZmJnf8YUGXCUvo8\nXeCqjrvtlAXJtHf+bu9zaALCgF7d+zQ4XPGwThm35DSZ0qUc6FQluTZq04Bquaeb\nQWDXVOofIgHWFZ7LTp4PWEUWUmrRzR/MOOf5Ux7rZIi8Et8w4HLNkmytAG3IEpcv\nf0FOg7ud5wKBgBxK1tKQFSTlg0MgtBME+IGPd0sbyjPdwPyNRQ6YAfLUIhIMnvpw\n4CSUColgTiBGaqi6Owu35DtWRPgoQbht/Qz9NOK1U/QL8XG89aATC8ZgQ7e6RNUo\ngiBP1YdZV1EPfG+rRdW4eghrknAzPKvk65bfqSf0f2Jmd/Dt6hyIoQlbAoGAbYFO\nB6uZoN5EfdCkxSlXKCOtRp0SFfgyShkn239I2xspFaEqlYmm/esJ++dcS0sk7L3L\nzNbhGhxG3R+340fl+IRwsTVjONW54ZcFrGDn0YllhW7WjlQS2ZjvALg+rPiZ/xeq\nQ3GHc/BPx72OxzZBHVAXBo4BOHS5etgcRdeHqmECgYBbyMCXYXYl/TNfH20iUzj+\nBcTu3/ufGpgPjAjTVembUUwmQKT3wdOM3OUKJhrnV6yc/1fJEpkY+cWlFk4ro1Br\nOR1phHwxCJTkila3ooTeGA+UmmM1feHZmYDzcIkSe2RhK+3CBrDWKMPifKqDQccz\ng37qVFowE7OVr8Y6JLByHA==\n-----END PRIVATE KEY-----\n",
+  "client_email": "deveshsawarkar@glassy-vial-413609.iam.gserviceaccount.com",
+  "client_id": "104192636179400770260",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/deveshsawarkar%40glassy-vial-413609.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

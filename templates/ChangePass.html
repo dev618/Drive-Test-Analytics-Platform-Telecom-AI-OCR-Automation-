@@ -1,0 +1,263 @@
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reset Password</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: #f3e5f5;
+    }
+    .heading-container {
+      background-color: #0d47a1;
+      background-size: cover;
+      background-repeat: no-repeat;
+      padding: 20px;
+      text-align: center;
+    }
+    .form-container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    h1 {
+      text-align: center;
+      color: white;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+    input, button {
+      width: calc(100% - 22px);
+      padding: 10px;
+      margin-top: 5px;
+      box-sizing: border-box;
+    }
+    img {
+      margin-top: 10px;
+      display: block;
+    }
+    button {
+      background-color: #1976d2;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 25px;
+      width: 30%;
+    }
+    button:hover {
+      background-color: #1565c0;
+    }
+    .logo {
+      position: absolute;
+      top: 10px;
+      left: 45%;
+      width: 90px; /* Adjust width as needed */
+      height: auto; /* Maintain aspect ratio */
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <div class="heading-container">
+      <img src="static/logo_light.png" alt="Logo" class="logo">
+      <h1>Reset Password</h1>
+      {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+      <div>
+        {% for category, message in messages %}
+        <div class="flash-{{ category }}">{{ message }}</div>
+        {% endfor %}
+      </div>
+      {% endif %}
+      {% endwith %}
+    </div>
+    <form id="resetPasswordForm" action="/request_reset_password" method="post">
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" placeholder="Enter your email">
+
+      <img id="captchaImage" src="https://via.placeholder.com/120x40" alt="Captcha">
+
+      <label for="captcha">Captcha:</label>
+      <input type="text" id="captcha" name="captcha" placeholder="Enter the captcha">
+
+      <button id="refreshCaptcha" type="button" onclick="generateCaptcha()">Refresh Captcha</button>
+
+      <button type="button" onclick="validateForm()">Submit</button>
+    </form>
+  </div>
+  <script>
+    // Function to generate a random captcha string
+    function generateCaptcha() {
+      var captcha = Math.random().toString(36).substring(7);
+      document.getElementById('captchaImage').src = 'https://via.placeholder.com/120x40?text=' + captcha;
+    }
+
+    // Function to validate the form
+    function validateForm() {
+      var userEmail = document.getElementById('email').value;
+      var userCaptcha = document.getElementById('captcha').value;
+      var captchaImage = document.getElementById('captchaImage').src.split('=')[1];
+
+      if (userEmail.trim() === '' || userCaptcha.trim() === '') {
+        alert('Please fill in all fields.');
+      } else if (userCaptcha !== captchaImage) {
+        alert('Captcha is incorrect. Please try again.');
+        generateCaptcha(); // Refresh captcha on incorrect input
+      } else {
+        // Redirect to welcome.html upon successful form submission
+        // window.location.href = 'welcome';
+        document.getElementById('resetPasswordForm').submit();
+      }
+    }
+
+    // Initial captcha generation
+    window.onload = generateCaptcha;
+  </script>
+</body>
+</html>-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Captcha Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f3e5f5;
+            color: black;
+            margin: 0;
+            padding: 0px;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 150px auto;
+            background: #e0e0e0;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #1976d2;
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+        }
+        .logo {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 100px; /* Adjust width as needed */
+            height: auto; /* Maintain aspect ratio */
+        }
+        h1{
+            color: white;
+        }
+
+        button:hover {
+            background-color: #1565c0;
+        }
+
+        #captchaImage {
+            display: block;
+            margin-bottom: 16px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .heading-container {
+            background-image: url("image/picture\ \(2\).jpg");
+            color: #eeeeee;
+            background-size: cover; /* Cover the entire background */
+            background-repeat: no-repeat; /* Prevent background image from repeating */
+            padding: 20px;
+            text-align: center;
+            position: relative; /* Make it relative to contain the absolute position of the logo */
+        }
+
+    </style>
+</head>
+<body>
+    <div class="heading-container">
+        <img src="image/logo_light.png" alt="Logo" class="logo">
+        <h1 > Reset Password </h1>
+        </div>
+
+<form id="captchaForm" method="POST" onsubmit="return validateForm()">
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+    <label for="captcha">Captcha:</label>
+    <input type="text" id="captcha" name="captcha" placeholder="Enter captcha" required>
+    <div id="captchaImage"></div>
+    <button type="button" onclick="refreshCaptcha()">Refresh Captcha</button>
+    <button type="submit">Submit</button>
+</form>
+
+<script>
+    // Function to generate a random captcha string
+    function generateCaptcha() {
+        var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        var captcha = '';
+        for (var i = 0; i < 6; i++) {
+            captcha += characters.charAt(Math.floor(Math.random() * characters.length));
+        }
+        return captcha;
+    }
+
+    // Function to refresh captcha
+    function refreshCaptcha() {
+        var captchaInput = document.getElementById('captcha');
+        var captchaImage = document.getElementById('captchaImage');
+        var captcha = generateCaptcha(); // Generate new captcha
+        captchaInput.value = ''; // Clear previous captcha input
+        captchaImage.textContent = captcha; // Display new captcha
+    }
+
+    // Function to validate form
+    function validateForm() {
+        // Your form validation logic goes here
+        return true; // Returning true for now to allow form submission
+    }
+
+    // Initial captcha generation when the page loads
+    window.onload = function() {
+        refreshCaptcha();
+    };
+</script>
+
+</body>
+</html>

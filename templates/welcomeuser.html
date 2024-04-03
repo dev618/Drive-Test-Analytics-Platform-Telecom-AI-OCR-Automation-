@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Page Title</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+
+            font-family: Arial, sans-serif;
+            background: #f3e5f5;
+            color: black;
+            margin: 0;
+            padding: 0;
+            background-repeat: no-repeat;
+
+        }
+
+        .heading-container {
+            background-image: url("static/picture.jpg");
+            background-size: cover; /* Cover the entire background */
+            background-repeat: no-repeat; /* Prevent background image from repeating */
+            padding: 20px;
+            text-align: center;
+
+        }
+
+        h1 {
+            color: white;
+            margin: 0;
+            padding: 20px;
+            border-radius: 0 0 50% 50%;
+        }
+
+        .nav-links {
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 20px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            width: 0;
+            height: 3px;
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #fff;
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 50%;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            margin-left: 20px;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #ffffff; /* White background */
+            border: 1px solid #64b5f6; /* Border color */
+            border-radius: 5px; /* Rounded corners */
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* Drop shadow */
+            min-width: 160px;
+            z-index: 1;
+            right: 0;
+        }
+
+        .dropdown-content a {
+            color: #333333; /* Text color */
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1; /* Light gray background on hover */
+        }
+
+        .content {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        h2 {
+            font-family: sans-serif;
+            font-size: 40px;
+            font-weight: bold;
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 10px;
+
+
+            animation : back 20s linear infinite;
+        }
+        @keyframes back{
+            100%{
+               background-position: 2000px 0;
+            }
+        }
+
+        h2::before{
+            content: attr(REFL-TEXT);
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform: rotateX(180deg);
+            line-height: 52px;
+
+        }
+
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 10px;
+            margin-left: 10%;
+            width: 10%;
+            margin-top: 10%;
+            cursor: pointer;
+            background-color: #1976d2;
+            color: #333333;
+            border: none;
+            border-radius: 25px;
+        }
+
+        button:hover {
+            background-color: #1565c0;
+        }
+
+        section .wave {
+            position: absolute;
+            width: 100%;
+            height: 143px;
+            bottom: 0;
+            left: 0;
+            background-color: #263238;
+            background: url(static/line.png);
+            animation: animate 10s linear infinite;
+        }
+
+        #taskAllocationButton {
+            margin-right: 10%;
+            color: white;
+        }
+        #downloadReportButton{
+            color: white;
+        }
+        .logo {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 90px; /* Adjust width as needed */
+            height: auto; /* Maintain aspect ratio */
+        }
+
+        section .wave::before {
+            content: '';
+            width: 100%;
+            height: 143px;
+            background: url("static/line.png");
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0.4;
+            animation: animate-reverse 10s linear infinite;
+        }
+        .arrow-icon {
+            margin-left: 5px; /* Adjust margin as needed */
+          }
+
+        @keyframes animate {
+            0% {
+                background-position: 0;
+            }
+            100% {
+                background-position: 1360px;
+            }
+        }
+
+        @keyframes animate-reverse {
+            0% {
+                background-position: 1360px;
+            }
+            100% {
+                background-position: 0;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="heading-container">
+        <img src=" static/logo_light.png" alt="Logo" class="logo">
+        <h1> </h1>
+    </div>
+
+        <div class="all">
+            <div class="nav-links">
+                <div class="dropdown" onclick="toggleActivityDropdown()">
+                    <a href="#" class="dropbtn">Activity</a>
+                    <!-- Adding sub-options under "Activity" -->
+                    <div class="dropdown-content" id="activityDropdownContent">
+                        <a href="Projectallocation">Task Allocation</a>
+                        <a href="taskStatus">Task Status</a>
+                    </div>
+                </div>
+                <div class="dropdown" onclick="toggleProfileDropdown()">
+                    <a href="#" class="dropbtn">Profile</a>
+                    <div class="dropdown-content" id="profileDropdownContent">
+                        <a href="userdetails">My Details</a>
+                        <a href="request_reset_password">Change Password</a>
+                        <a href="welcome">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="content">
+            <h2 > WELCOME TO INSTA-ICT </h2>
+            <br>
+            <br>
+            <section>
+                <div class="wave">
+                </div>
+            </section>
+            <button id="Allocationrequest" onclick="redirectToAllocationRequest()">
+                Go Ahead
+                <span class="arrow-icon">&#10148;</span>
+              </button>
+
+        </div>
+
+
+        <script>
+            function toggleActivityDropdown() {
+                var activityDropdownContent = document.getElementById("activityDropdownContent");
+                var profileDropdownContent = document.getElementById("profileDropdownContent");
+                if (activityDropdownContent.style.display === "block") {
+                    activityDropdownContent.style.display = "none";
+                } else {
+                    activityDropdownContent.style.display = "block";
+                    // Close profile dropdown if it's open
+                    profileDropdownContent.style.display = "none";
+                }
+            }
+
+            function toggleProfileDropdown() {
+                var profileDropdownContent = document.getElementById("profileDropdownContent");
+                var activityDropdownContent = document.getElementById("activityDropdownContent");
+                if (profileDropdownContent.style.display === "block") {
+                    profileDropdownContent.style.display = "none";
+                } else {
+                    profileDropdownContent.style.display = "block";
+                    // Close activity dropdown if it's open
+                    activityDropdownContent.style.display = "none";
+                }
+            }
+            function redirectToAllocationRequest() {
+                // You can replace the URL with the actual link to your Allocation Request page
+                window.location.href = 'Allocationrequest.html';
+            }s
+
+
+
+        </script>
+
+
+</body>
+</html>

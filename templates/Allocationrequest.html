@@ -1,0 +1,382 @@
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yes or No</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f3e5f5;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            text-align: center;
+            background-color: #e0e0e0;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 10%;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            margin-top: -2%;
+            margin-bottom: 20px;
+        }
+
+        .options {
+            display: flex;
+            justify-content: center;
+            margin-top: 10%;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            margin: 0 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 15%;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #1565c0;
+        }
+
+        .yes {
+            background-color: #1976d2;
+            color: white;
+            border-radius: 25px;
+            margin-right: 10%;
+        }
+
+        .no {
+            background-color: #1976d2;
+            color: white;
+            border-radius: 25px;
+        }
+
+        .heading-container {
+            background-image: url("static/picture.jpg");
+            color: #eeeeee;
+            background-size: cover; /* Cover the entire background */
+            background-repeat: no-repeat; /* Prevent background image from repeating */
+            padding: 20px;
+            text-align: center;
+            position: relative; /* Make it relative to contain the absolute position of the logo */
+        }
+
+        .logo {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 100px; /* Adjust width as needed */
+            height: auto; /* Maintain aspect ratio */
+        }
+        h1{
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="heading-container">
+        <img src="static/logo_light.png" alt="Logo" class="logo">
+        <h1> Availability Page </h1>
+    </div>
+
+    <div class="container">
+        <h2>Are You Available Today ?</h2>
+        <div class="options">
+            <button class="yes" onclick="updateAvailability('yes')">Yes</button>
+            <button class="no" onclick="updateAvailability('no')">No</button>
+        </div>
+    </div>
+
+    <script>
+    function updateAvailability(response) {
+        fetch('/update_availability', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ response: response })
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to update availability');
+            }
+            // Parse the JSON response data
+            return response.json();
+        })
+        .then(data => {
+            if (data.response == 'True') {
+                // Redirect to the nooption.html page
+                console.log("Enter in if condition...")
+                window.location.href = 'AllocatedStatus.html';
+            } else {
+
+                window.location.href = 'nooption.html';
+            }
+        })
+        .catch(error => {
+            console.error('Error updating availability:', error);
+            // Optionally, handle the error here (e.g., display an error message)
+        });
+    }
+    function navigateToPage(pageUrl) {
+        window.location.href = pageUrl;
+    }
+</script>
+
+</body>
+</html>
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yes or No</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f3e5f5;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            text-align: center;
+            background-color: #e0e0e0;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 10%;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            margin-top: -2%;
+            margin-bottom: 20px;
+        }
+
+        .options {
+            display: flex;
+            justify-content: center;
+            margin-top: 10%;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            margin: 0 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 15%;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #1565c0;
+        }
+
+        .yes {
+            background-color: #1976d2;
+            color: white;
+            border-radius: 25px;
+            margin-right: 10%;
+        }
+
+        .no {
+            background-color: #1976d2;
+            color: white;
+            border-radius: 25px;
+        }
+
+        .heading-container {
+            background-image: url("static/picture.jpg");
+            color: #eeeeee;
+            background-size: cover; /* Cover the entire background */
+            background-repeat: no-repeat; /* Prevent background image from repeating */
+            padding: 20px;
+            text-align: center;
+            position: relative; /* Make it relative to contain the absolute position of the logo */
+        }
+
+        .logo {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 100px; /* Adjust width as needed */
+            height: auto; /* Maintain aspect ratio */
+        }
+        h1{
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="heading-container">
+        <img src="static/logo_light.png" alt="Logo" class="logo"> &lt;!&ndash; Add your logo here &ndash;&gt;
+        <h1> Availability Page </h1>
+    </div>
+
+    <div class="container">
+        <h2>Are You Available Today ?</h2>
+        <div class="options">
+            <button class="yes" onclick="navigateToPage('AllocatedStatus.html')">Yes</button>
+            <button class="no" onclick="navigateToPage('nooption.html')">No</button>
+        </div>
+    </div>
+
+    <script>
+        function navigateToPage(pageUrl) {
+            window.location.href = pageUrl;
+        }
+    </script>
+</body>
+</html>-->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yes or No</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f3e5f5;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            text-align: center;
+            background-color: #e0e0e0;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 10%;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            margin-top: -2%;
+            margin-bottom: 20px;
+        }
+
+        .options {
+            display: flex;
+            justify-content: center;
+            margin-top: 10%;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            margin: 0 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 15%;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #1565c0;
+        }
+
+        .yes {
+            background-color: #1976d2;
+            color: white;
+            border-radius: 25px;
+            margin-right: 10%;
+        }
+
+        .no {
+            background-color: #1976d2;
+            color: white;
+            border-radius: 25px;
+        }
+
+        .heading-container {
+            background-image: url("static/picture.jpg");
+            color: #eeeeee;
+            background-size: cover; /* Cover the entire background */
+            background-repeat: no-repeat; /* Prevent background image from repeating */
+            padding: 20px;
+            text-align: center;
+            position: relative; /* Make it relative to contain the absolute position of the logo */
+        }
+
+        .logo {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 100px; /* Adjust width as needed */
+            height: auto; /* Maintain aspect ratio */
+        }
+        h1{
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="heading-container">
+        <img src="static/logo_light.png" alt="Logo" class="logo">
+        <h1> Availability Page </h1>
+    </div>
+
+    <div class="container">
+        <h2>Are You Available Today ?</h2>
+        <div class="options">
+            <button class="yes" onclick="updateAvailability('yes')">Yes</button>
+            <button class="no" onclick="updateAvailability('no')">No</button>
+        </div>
+    </div>
+
+    <script>
+        function updateAvailability(response) {
+            fetch('/update_availability', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ response: response })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to update availability');
+                }
+                // Parse the JSON response data
+                return response.json();
+            })
+            .then(data => {
+                if (response === 'yes') {
+                    window.location.href = 'AllocatedStatus.html';
+                } else {
+                    window.location.href = 'nooption.html';
+                }
+            })
+            .catch(error => {
+                console.error('Error updating availability:', error);
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Allocated Status</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0px;
+      background-color: #f3e5f5;
+    }
+
+    h1 {
+      text-align: center;
+      color: white;
+    }
+
+    table {
+      width: 65%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+      margin-top: 5%;
+      margin-left: 20%;
+    }
+
+    th, td {
+      padding: 12px;
+      border: 1px solid #ddd;
+      text-align: center;
+    }
+
+    th {
+      background-color: #4285f4;
+      color: white;
+    }
+
+    .accept {
+      margin-top: 10%;
+      text-align: center;
+    }
+
+    .status-button {
+      display: block;
+      width: 10%;
+      padding: 10px;
+      background-color: #1976d2;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      border-radius: 25px;
+      margin-top: 5%;
+      margin-left: 40%;
+
+
+    }
+    .status-button1{
+      display: block;
+      width: 10%;
+      padding: 10px;
+      background-color: #1976d2;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      border-radius: 25px;
+      margin-left: 60%;
+      margin-top: -2.5%;
+
+
+    }
+    .status-button:hover{
+      background-color: #1565c0;
+    }
+    .status-button1:hover{
+      background-color: #1565c0;
+
+    }
+    .heading-container {
+      background-image: url("static/bluewhite.jpg");
+      background-size: cover; /* Cover the entire background */
+      background-repeat: no-repeat; /* Prevent background image from repeating */
+      padding: 20px;
+      text-align: center;
+  }
+
+    .status-button.no {
+      background-color: #2ECC71;
+
+      margin-top: -35px;
+      width: 10%;
+    }
+
+    button {
+      width: 15%;
+    }
+
+
+    td:first-child {
+      width: 5%;  /* Adjust the width for the Sr No. column */
+    }
+
+    td:nth-child(2),
+    td:nth-child(3) {
+      width: 35%;  /* Adjust the width for Field and Value columns */
+    }
+    .logo {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      width: 100px; /* Adjust width as needed */
+      height: auto; /* Maintain aspect ratio */
+  }
+
+.nav-links {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+}
+.nav-links a {
+  margin-left: 20px;
+  color: white;
+  text-decoration: none;
+}
+.nav-links a:hover {
+  text-decoration: underline;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  right: 0;
+}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+.dropdown-content a {
+  color: blue; /* Change color to blue */
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+}
+.dropdown-content a:hover {
+  background-color: #f0f0f0; /* Hover background color */
+}
+.form-container {
+  margin-top: 20px; /* Adjust margin-top */
+  max-width: 400px;
+  margin-left: auto; /* Center horizontally */
+  margin-right: auto; /* Center horizontally */
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #e0e0e0;
+  position: relative;
+}
+#table-container {
+  display: none;
+}
+#siteId{
+  margin-left: 20%;
+}
+#submit1{
+  background-color: #1976d2;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  margin-top:5%;
+
+    margin-left: 30%;
+    border-radius: 25px;
+    display: block;
+    width: 23%;
+    padding: 10px;
+    border-radius: 25px;
+
+}
+
+
+  </style>
+</head>
+<body>
+  <div class="heading-container">
+    <img src=" static/logo_light.png" alt="Logo" class="logo">
+
+    <div class="all">
+      <div class="nav-links">
+          <div class="dropdown" onclick="toggleActivityDropdown()">
+              <a href="#" class="dropbtn">Activity</a>
+              <!-- Adding sub-options under "Activity" -->
+              <div class="dropdown-content" id="activityDropdownContent">
+                  <a href="TaskAllocatedstatus.html">Task Allocation</a>
+                  <a href="TaskStatus.html">Task Status</a>
+              </div>
+          </div>
+          <div class="dropdown" onclick="toggleProfileDropdown()">
+              <a href="#" class="dropbtn">Profile</a>
+              <div class="dropdown-content" id="profileDropdownContent">
+                <a href="userdetail.html">My Details</a>
+                  <a href="ChangePass.html">Change Password</a>
+                  <a href="welcome.html">Logout</a>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <h1>Allocated Status</h1>
+
+  </div>
+
+  <div class="form-container">
+    <form id="siteForm" action="#">
+        <label for="siteId">Select Site ID:</label>
+        <select id="siteId" class="dropdown">
+            <option value="Select Circle">-- Select Site-ID --</option>
+            {% for site_code in site_codes %}
+            <option value="{{ site_code }}">{{ site_code }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit" id="submit1" onclick="displayTable()">Submit</button>
+    </form>
+</div>
+
+<div class="table-container" id="table-container">
+  <table>
+    <tr>
+      <th>Sr No.</th>
+      <th>Field</th>
+      <th>Value</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Project</td>
+      <td>ProjectName</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Circle</td>
+      <td>CircleName</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Site-ID</td>
+      <td>SiteID123</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Allocated Location</td>
+      <td>LocationName</td>
+    </tr>
+  </table>
+  <button class="status-button" onclick="navigateToPage('presectorselectionpage.html')"> Submit </button>
+  <button class="status-button1" onclick="navigateToPage('nooption.html')"> Cancel </button>
+
+
+
+  <script>
+    function toggleActivityDropdown() {
+      var activityDropdownContent = document.getElementById("activityDropdownContent");
+      var profileDropdownContent = document.getElementById("profileDropdownContent");
+      if (activityDropdownContent.style.display === "block") {
+          activityDropdownContent.style.display = "none";
+      } else {
+          activityDropdownContent.style.display = "block";
+          // Close profile dropdown if it's open
+          profileDropdownContent.style.display = "none";
+      }
+  }
+
+  function toggleProfileDropdown() {
+      var profileDropdownContent = document.getElementById("profileDropdownContent");
+      var activityDropdownContent = document.getElementById("activityDropdownContent");
+      if (profileDropdownContent.style.display === "block") {
+          profileDropdownContent.style.display = "none";
+      } else {
+          profileDropdownContent.style.display = "block";
+          // Close activity dropdown if it's open
+          activityDropdownContent.style.display = "none";
+      }
+  }
+  function displayTable() {
+    event.preventDefault(); // Prevent form submission
+    var siteId = document.getElementById("siteId").value;
+    if (siteId !== "-- Select Site-ID --") { // Check if a site is selected
+      document.getElementById("table-container").style.display = "block"; // Display the table
+    } else {
+      alert("Please select a Site ID."); // Alert the user to select a site
+    }
+  }
+
+    function setStatus(status) {
+      alert('Status: ' + status);
+      // You can perform additional actions here based on the selected status
+    }
+  </script>
+  <script>
+    function navigateToPage(pageUrl) {
+        window.location.href = pageUrl;
+    }
+</script>
+</div>
+
+
+</body>
+</html>
