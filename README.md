@@ -1,20 +1,26 @@
-# 📡 Telecom Tower Drive Test Tool
+# 🛰️ TowerVision: AI-Powered Telecom OCR & Analytics Platform
 
-**Client:** Insta ICT Solution Pvt. Ltd  
-**Developed by:** Devesh Sawarkar & Team 
-**Project Date:** February 23, 2024  
-**Tech Stack:** Python, Flask, OpenCV, Tesseract OCR, Pandas, Firestore, Power BI
+![Python](https://img.shields.io/badge/Python-3.10-blue?logo=python)
+![Flask](https://img.shields.io/badge/Flask-Framework-black?logo=flask)
+![OpenCV](https://img.shields.io/badge/OpenCV-Computer%20Vision-green?logo=opencv)
+![Tesseract OCR](https://img.shields.io/badge/Tesseract-OCR-orange)
+![Pandas](https://img.shields.io/badge/Pandas-Data%20Analysis-yellow?logo=pandas)
+![Firestore](https://img.shields.io/badge/Firestore-NoSQL%20DB-blue?logo=firebase)
+![Power BI](https://img.shields.io/badge/Power%20BI-Visualization-yellow?logo=powerbi)
 
 ---
 
-## 🧠 Overview
+**Tags:**  
+[`telecom`](#) [`ocr`](#) [`image-processing`](#) [`computer-vision`](#) [`opencv`](#) [`tesseract-ocr`](#) [`python`](#) [`flask`](#) [`pandas`](#) [`numpy`](#) [`firestore`](#) [`google-vision-api`](#) [`data-analytics`](#) [`powerbi`](#) [`automation`](#) [`data-visualization`](#) [`field-operations`](#) [`end-to-end-project`](#) [`portfolio-project`](#)  
 
+---
+
+## 📡 Overview
 The **Telecom Tower Performance Management System** is an AI-powered platform built to optimize telecom site monitoring through automated **image validation**, **OCR-based data extraction**, and **report generation**. It enables seamless coordination between administrators, riggers, and engineers, ensuring efficient data tracking before and after tower equipment changes.
 
 ---
 
 ## 🎯 Key Objectives
-
 - Enable image-based data validation using OCR and computer vision.
 - Automate tower site assignment and performance tracking.
 - Streamline data submission from riggers (field engineers).
@@ -68,13 +74,13 @@ The **Telecom Tower Performance Management System** is an AI-powered platform bu
 
 ## 🧱 System Modules
 
-### Admin Panel
+**Admin Panel**
 - ✅ Site Allocation to Riggers
 - 📥 View/Download Pre/Post Data
 - 🖼️ Image Folder Access
 - 📄 Excel Report Export
 
-### User Panel
+**User Panel**
 - 📍 Allocation View
 - 📤 Image Upload (Pre/Post)
 - 📁 Folder-based Image Storage
@@ -83,7 +89,6 @@ The **Telecom Tower Performance Management System** is an AI-powered platform bu
 ---
 
 ## 🧠 Technologies Used
-
 - **Backend:** Python, Flask (REST API)
 - **OCR & Vision:** OpenCV, Tesseract OCR, Google Vision API
 - **Data Handling:** Pandas, NumPy
@@ -93,13 +98,13 @@ The **Telecom Tower Performance Management System** is an AI-powered platform bu
 
 ---
 
-## 🧪 Sample Workflows
+## 🧪 Sample Workflow Diagram
 
-### 📸 Image Extraction & OCR
-
-```plaintext
-Step 1: User uploads pre-change tower images (multiple angles)
-Step 2: System extracts key visual parameters via OCR
-Step 3: Admin reviews extracted data
-Step 4: After changes, user uploads post-change images
-Step 5: System performs comparison & generates report
+```mermaid
+flowchart TD
+    A[User Uploads Pre-Change Images] --> B[OCR & Image Processing]
+    B --> C[Data Extraction & Validation]
+    C --> D[Admin Review & Approval]
+    D --> E[User Uploads Post-Change Images]
+    E --> F[Automated Comparison]
+    F --> G[Report Generation & Dashboard Update]
